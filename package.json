@@ -5,5 +5,8 @@
   "scripts": {
     "start": "",
     "test": ""
+  },
+  "devDependencies": {
+    "eslint": "^3.16.1"
   }
 }
