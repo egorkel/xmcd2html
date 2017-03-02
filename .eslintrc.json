@@ -1,6 +1,5 @@
 {
   "extends": ["eslint:recommended"],
-  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -110,6 +109,7 @@
     "no-mixed-requires": ["error", {"allowCall": true}],
     "no-new-require": "error",
     "no-path-concat": "error",
-    "no-process-exit": "warn"
+    "no-process-exit": "warn",
+    "no-console": "warn"
   }
 }

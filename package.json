@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "start": "",
+    "start": "node index.js",
     "test": ""
   },
   "devDependencies": {
     "eslint": "^3.16.1"
+  },
+  "dependencies": {
+    "xml2js": "^0.4.17"
   }
 }
