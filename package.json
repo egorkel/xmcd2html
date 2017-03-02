@@ -1,0 +1,9 @@
+{
+  "name": "xmcd2html",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "",
+    "test": ""
+  }
+}
