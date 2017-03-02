@@ -8,11 +8,14 @@ const img = '<img style="top: TOPpx; left: LEFTpx" src="SRC">';
 const xFactor = 1.3;
 const yFactor = 1.5;
 
-convert('first');
-convert('second');
+let files = fs.readdirSync('./src');
+
+for (let i of files) {
+  convert(i);
+}
 
 function convert(name) {
-  const xmlContent = fs.readFileSync(`./src/${name}.xml`, {encoding: 'UTF-8'});
+  const xmlContent = fs.readFileSync(`./src/${name}`, {encoding: 'UTF-8'});
   let htmlContent = fs.readFileSync('./template.html', {encoding: 'UTF-8'});
 
   parser.parseString(xmlContent, (err, data) => {
@@ -59,6 +62,7 @@ function convert(name) {
       }
     }
 
-    fs.writeFileSync(`./dest/${name}.html`, htmlContent);
+    htmlContent = htmlContent.replace('TITLE', name);
+    fs.writeFileSync(`./dest/${name.replace(/\.\w+$/, '')}.html`, htmlContent);
   });
 }
