@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const xml = require('xml2js');
 
 const parser = new xml.Parser();
@@ -7,8 +8,8 @@ const div = '<div style="top: TOPpx; left: LEFTpx">';
 const img = '<img style="top: TOPpx; left: LEFTpx" src="SRC">';
 const xFactor = 1.3;
 const yFactor = 1.5;
-const src = './src';
-const dest = './dest';
+const src = 'src';
+const dest = 'dest';
 
 if (fs.existsSync(src)) {
   if (!fs.existsSync(dest)) {
@@ -22,8 +23,8 @@ if (fs.existsSync(src)) {
 }
 
 function convert(name) {
-  const xmlContent = fs.readFileSync(`${src}/${name}`, {encoding: 'UTF-8'});
-  let htmlContent = fs.readFileSync('./template.html', {encoding: 'UTF-8'});
+  const xmlContent = fs.readFileSync(path.join(src, name), {encoding: 'UTF-8'});
+  let htmlContent = fs.readFileSync('template.html', {encoding: 'UTF-8'});
 
   parser.parseString(xmlContent, (err, data) => {
     let images = {};
@@ -70,6 +71,6 @@ function convert(name) {
     }
 
     htmlContent = htmlContent.replace('TITLE', name);
-    fs.writeFileSync(`${dest}/${name.replace(/\.\w+$/, '')}.html`, htmlContent);
+    fs.writeFileSync(path.join(dest, `${name.replace(/\.\w+$/, '')}.html`), htmlContent);
   });
 }
