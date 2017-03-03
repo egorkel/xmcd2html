@@ -2,6 +2,7 @@
 
 ###Requirements
 1. NodeJS v7 and newer
+2. Tested with MathCAD 14
 
 ###How to use
 1. Clone project
