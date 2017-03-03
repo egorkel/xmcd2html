@@ -7,15 +7,22 @@ const div = '<div style="top: TOPpx; left: LEFTpx">';
 const img = '<img style="top: TOPpx; left: LEFTpx" src="SRC">';
 const xFactor = 1.3;
 const yFactor = 1.5;
+const src = './src';
+const dest = './dest';
 
-let files = fs.readdirSync('./src');
+if (fs.existsSync(src)) {
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest);
+  }
 
-for (let i of files) {
-  convert(i);
+  let files = fs.readdirSync(src);
+  for (let i of files) {
+    convert(i);
+  }
 }
 
 function convert(name) {
-  const xmlContent = fs.readFileSync(`./src/${name}`, {encoding: 'UTF-8'});
+  const xmlContent = fs.readFileSync(`${src}/${name}`, {encoding: 'UTF-8'});
   let htmlContent = fs.readFileSync('./template.html', {encoding: 'UTF-8'});
 
   parser.parseString(xmlContent, (err, data) => {
@@ -63,6 +70,6 @@ function convert(name) {
     }
 
     htmlContent = htmlContent.replace('TITLE', name);
-    fs.writeFileSync(`./dest/${name.replace(/\.\w+$/, '')}.html`, htmlContent);
+    fs.writeFileSync(`${dest}/${name.replace(/\.\w+$/, '')}.html`, htmlContent);
   });
 }
